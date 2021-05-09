@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GoLiveDatabase" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\GoLiveDatabase.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GoLiveDatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.DomainTable" Member="DomainTables">
+    <Type Name="DomainTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DomainNames" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SpaceTable" Member="SpaceTables">
+    <Type Name="SpaceTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SpaceProvided" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoginTable" Member="LoginTables">
+    <Type Name="LoginTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProfileTable" Member="ProfileTables">
+    <Type Name="ProfileTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="E_mail" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VendorProfileTable" Member="VendorProfileTables">
+    <Type Name="VendorProfileTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="VendorName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="E_mail" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Logo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LogoPath" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="VendorProfileTable_HostingPlansTable" Member="HostingPlansTables" ThisKey="Id" OtherKey="VendorID" Type="HostingPlansTable" />
+      <Association Name="VendorProfileTable_HostDomainsTable" Member="HostDomainsTables" ThisKey="Id" OtherKey="VendorID" Type="HostDomainsTable" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FeedBackTable" Member="FeedBackTables">
+    <Type Name="FeedBackTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="E_mail" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Usertype" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HostingPlansTable" Member="HostingPlansTables">
+    <Type Name="HostingPlansTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Platform" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlanType" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Websites" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SpaceSize" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email_size" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ftp_size" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="PlanPrice" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="VendorProfileTable_HostingPlansTable" Member="VendorProfileTable" ThisKey="VendorID" OtherKey="Id" Type="VendorProfileTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HostDomainsTable" Member="HostDomainsTables">
+    <Type Name="HostDomainsTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DomainName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DomainPrice" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="VendorProfileTable_HostDomainsTable" Member="VendorProfileTable" ThisKey="VendorID" OtherKey="Id" Type="VendorProfileTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RateReviewTable" Member="RateReviewTables">
+    <Type Name="RateReviewTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Review" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VendorWebsiteTable" Member="VendorWebsiteTables">
+    <Type Name="VendorWebsiteTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
